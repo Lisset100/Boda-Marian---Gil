@@ -13,83 +13,97 @@ import SaveTheDate4 from '../assets/SaveTheDate4.jpg';
 import SaveTheDate5 from '../assets/SaveTheDate5.jpg';
 const WeddingInvitation = () => {
  const carouselRef = useRef(null);
-useEffect(() => {
-  const carousel = carouselRef.current;
-  if (!carousel) return;
-
-  // Esperamos a que el layout esté listo
-  requestAnimationFrame(() => {
-    const cards = carousel.children;
-    if (cards.length < 2) return;
-
-    // Centramos la segunda imagen
-    const secondCard = cards[1];
-    const offset =
-      secondCard.offsetLeft -
-      (carousel.offsetWidth / 2 - secondCard.offsetWidth / 2);
-
-    carousel.scrollTo({
-      left: offset,
-      behavior: "instant",
-    });
-  });
-}, []);
-
-const scrollCarousel = (direction) => {
-  const carousel = carouselRef.current;
-  if (!carousel) return;
-
-  const scrollAmount = carousel.offsetWidth * 0.8;
-
-  carousel.scrollBy({
-    left: direction === "left" ? -scrollAmount : scrollAmount,
-    behavior: "smooth",
-  });
-};
-
-
+  const lastTouchY = useRef(0);
   const [isOpen, setIsOpen] = useState(false);
   const [scrollAmount, setScrollAmount] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
+    days: 0, hours: 0, minutes: 0, seconds: 0
   });
 
+  // 1. EFECTO PARA MANEJAR LA APERTURA (Mouse y Touch)
   useEffect(() => {
-    const handleScroll = (e) => {
+    // Bloquear scroll del body mientras la invitación esté cerrada
+    if (!isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    const updateScroll = (delta) => {
+      setScrollAmount(prev => {
+        // Delta positivo = scroll hacia abajo / deslizar hacia arriba
+        const newAmount = Math.max(0, Math.min(100, prev + (delta > 0 ? 5 : -5)));
+        if (newAmount >= 100) setIsOpen(true);
+        return newAmount;
+      });
+    };
+
+    const handleWheel = (e) => {
       if (!isOpen) {
-        e.preventDefault();
-        const delta = e.deltaY || e.touches?.[0]?.clientY;
-        
-        setScrollAmount(prev => {
-          const newAmount = Math.max(0, Math.min(100, prev + (delta > 0 ? 5 : -5)));
-          
-          if (newAmount >= 100) {
-            setIsOpen(true);
-          }
-          
-          return newAmount;
-        });
+        if (e.cancelable) e.preventDefault();
+        updateScroll(e.deltaY);
       }
+    };
+
+    const handleTouchStart = (e) => {
+      lastTouchY.current = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e) => {
       if (!isOpen) {
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
+        const currentTouchY = e.touches[0].clientY;
+        const delta = lastTouchY.current - currentTouchY; // Calculamos el movimiento
+        updateScroll(delta);
+        lastTouchY.current = currentTouchY;
       }
     };
 
-    window.addEventListener('wheel', handleScroll, { passive: false });
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
-      window.removeEventListener('wheel', handleScroll);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
+  // 2. EFECTO PARA EL CARRUSEL DE FOTOS (Configuración inicial)
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    requestAnimationFrame(() => {
+      const cards = carousel.children;
+      if (cards.length < 2) return;
+
+      const secondCard = cards[1];
+      const offset =
+        secondCard.offsetLeft -
+        (carousel.offsetWidth / 2 - secondCard.offsetWidth / 2);
+
+      carousel.scrollTo({
+        left: offset,
+        behavior: "instant",
+      });
+    });
+  }, []);
+
+  // 3. FUNCIÓN PARA LAS FLECHAS DEL CARRUSEL
+  const scrollCarousel = (direction) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    const amount = carousel.offsetWidth * 0.8;
+    carousel.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
+  // 4. EFECTO PARA EL CONTADOR (Time Left)
   useEffect(() => {
     const calculateTimeLeft = () => {
       const weddingDate = new Date('2026-09-12T16:00:00');
@@ -108,10 +122,8 @@ const scrollCarousel = (direction) => {
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, []);
-
   const padrinos = [
     { tipo: "VELACIÓN", nombres: ["Andrés Juárez Ortiz", "Lorena Margarita Limón González"] },
     { tipo: "ARRAS", nombres: ["Hugo Eloy Matías Galindo", "Laura Mejía Ortiz"] },
