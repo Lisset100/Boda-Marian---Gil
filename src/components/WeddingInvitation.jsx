@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight, Clock, Heart, MapPin } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
-import Boda1 from '../assets/Boda1.jpg';
+import boda1 from '../assets/boda1.jpg';
 import Boda2 from '../assets/Boda2.jpg';
 import FotoCortinaMarian from '../assets/Cortina de flores.png';
 import FotoCortinaGilberto from '../assets/Cortina flores Izquierda.png';
@@ -228,7 +228,7 @@ const scrollCarousel = (direction) => {
 
     {/* Imagen principal */}
     <img 
-      src={Boda1}
+      src={boda1}
       alt="Marian y Gil"
       className="w-full h-auto block"
     />
