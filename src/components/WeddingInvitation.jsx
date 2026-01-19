@@ -4,6 +4,7 @@ import Boda1 from './assets/Boda1.jpg';
 import Boda2 from './assets/Boda2.jpg';
 import FotoCortinaMarian from './assets/Cortina de flores.png';
 import FotoCortinaGilberto from './assets/Cortina flores Izquierda.png';
+import FondoFlores from './assets/FondoFlores.png';
 import LiverpoolLogo from './assets/LiverpoolLogo.png';
 import SaveTheDate from './assets/SaveTheDate.png';
 import SaveTheDate2 from './assets/SaveTheDate2.jpg';
@@ -218,7 +219,7 @@ const scrollCarousel = (direction) => {
     bg-cover
   "
   style={{
-    backgroundImage: `url(${FotoCortinaMarian})`,
+    backgroundImage: `url(${FondoFlores})`,
   }}
 >
 
@@ -240,9 +241,9 @@ const scrollCarousel = (direction) => {
       className="absolute bottom-0 left-0 w-full py-6 px-6 text-center z-10"
       style={{ backgroundColor: 'rgba(220, 198, 170, 0.90)' }}
     >
-      <p className="text-sm md:text-xl uppercase tracking-widest mb-3 font-light text-white">
-        Nos Casamos
-      </p>
+      <h3 className="text-sm md:text-xl uppercase tracking-widest mb-3 font-light text-white">
+        ¡Nos Casamos!
+      </h3>
 
       <h1 
         className="text-5xl md:text-6xl lg:text-7xl mb-3"
@@ -251,9 +252,9 @@ const scrollCarousel = (direction) => {
         Belén y Gil
       </h1>
 
-      <p className="text-base md:text-xl uppercase tracking-wider font-light text-white">
+      <h3 className="text-base md:text-xl uppercase tracking-wider font-light text-white">
         12 Septiembre 2026
-      </p>
+      </h3>
 
       <Heart className="w-5 h-5 mx-auto mt-4 text-white" />
     </div>
@@ -357,7 +358,7 @@ const scrollCarousel = (direction) => {
 
       {/* Invitación */}
       <section className="relative w-full overflow-hidden flex justify-center" style={{
-    backgroundImage: `url(${FotoCortinaMarian})`,
+    backgroundImage: `url(${FondoFlores})`,
   }}>
 
   <img 
@@ -911,9 +912,9 @@ const scrollCarousel = (direction) => {
         </h3>
 
         <a
-          href="https://wa.me/524427491821"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="https://wa.me/524427491821?text=Hola%20😊%20Confirmo%20mi%20asistencia%20para%20acompa%C3%B1arlos%20en%20este%20evento%20tan%20especial%20y%20m%C3%A1gico.%20✨%F0%9F%92%9B"
+  target="_blank"
+  rel="noopener noreferrer"
           className="
             inline-flex items-center justify-center
             px-6 py-3
@@ -947,8 +948,8 @@ const scrollCarousel = (direction) => {
         </h3>
 
         <a
-          href="https://wa.me/524423762369"
-          target="_blank"
+          href="https://wa.me/524427491821?text=Hola%20😊%20Confirmo%20mi%20asistencia%20para%20acompa%C3%B1arlos%20en%20este%20evento%20tan%20especial%20y%20m%C3%A1gico.%20✨%F0%9F%92%9B"
+  target="_blank"
           rel="noopener noreferrer"
           className="
             inline-flex items-center justify-center
