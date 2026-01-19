@@ -1,11 +1,52 @@
-import { Clock, Gift, Heart, MapPin } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, Clock, Heart, MapPin } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
 import Boda1 from './assets/Boda1.jpg';
 import Boda2 from './assets/Boda2.jpg';
-import FotoCortinaMarian from './assets/Cortina de flores.png'; // Agrega tu foto
-import FotoCortinaGilberto from './assets/Cortina flores Izquierda.png'; // Agrega tu foto
-
+import FotoCortinaMarian from './assets/Cortina de flores.png';
+import FotoCortinaGilberto from './assets/Cortina flores Izquierda.png';
+import LiverpoolLogo from './assets/LiverpoolLogo.png';
+import SaveTheDate from './assets/SaveTheDate.png';
+import SaveTheDate2 from './assets/SaveTheDate2.jpg';
+import SaveTheDate3 from './assets/SaveTheDate3.jpg';
+import SaveTheDate4 from './assets/SaveTheDate4.jpg';
+import SaveTheDate5 from './assets/SaveTheDate5.jpg';
 const WeddingInvitation = () => {
+ const carouselRef = useRef(null);
+useEffect(() => {
+  const carousel = carouselRef.current;
+  if (!carousel) return;
+
+  // Esperamos a que el layout esté listo
+  requestAnimationFrame(() => {
+    const cards = carousel.children;
+    if (cards.length < 2) return;
+
+    // Centramos la segunda imagen
+    const secondCard = cards[1];
+    const offset =
+      secondCard.offsetLeft -
+      (carousel.offsetWidth / 2 - secondCard.offsetWidth / 2);
+
+    carousel.scrollTo({
+      left: offset,
+      behavior: "instant",
+    });
+  });
+}, []);
+
+const scrollCarousel = (direction) => {
+  const carousel = carouselRef.current;
+  if (!carousel) return;
+
+  const scrollAmount = carousel.offsetWidth * 0.8;
+
+  carousel.scrollBy({
+    left: direction === "left" ? -scrollAmount : scrollAmount,
+    behavior: "smooth",
+  });
+};
+
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrollAmount, setScrollAmount] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
@@ -71,11 +112,11 @@ const WeddingInvitation = () => {
   }, []);
 
   const padrinos = [
-    { tipo: "VELACIÓN", nombres: ["André Juárez Ortiz", "Lorena Limón"] },
-    { tipo: "ARRAS", nombres: ["Pedro", "Lilia"] },
-    { tipo: "LAZO", nombres: ["Roberto", "Liste"] },
-    { tipo: "ANILLOS", nombres: ["Marian", "Paco"] },
-    { tipo: "BIBLIA Y ROSARIO", nombres: ["María", "Alan"] }
+    { tipo: "VELACIÓN", nombres: ["Andrés Juárez Ortiz", "Lorena Margarita Limón González"] },
+    { tipo: "ARRAS", nombres: ["Hugo Eloy Matías Galindo", "Laura Mejía Ortiz"] },
+    { tipo: "LAZO", nombres: ["Arturo Díaz", "Vania Rodríguez"] },
+    { tipo: "ANILLOS", nombres: ["Óscar Alvarado Rojas", "Violeta Cancino Ruiz"] },
+    { tipo: "BIBLIA Y ROSARIO", nombres: ["Sergio Lares"] }
   ];
 
   return (
@@ -164,40 +205,62 @@ const WeddingInvitation = () => {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden">
-        {/* Imagen de fondo - sin recortar */}
-        <img 
-          src={Boda1}
-          alt="Marian y Gil"
-          className="absolute inset-0 w-full h-full object-contain"
-          style={{ objectPosition: 'center' }}
-        />
-        
-        {/* Overlay oscuro sutil */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
-        
-        {/* Sección inferior con overlay beige */}
-        <div 
-          className="relative z-10 w-full py-6 px-6 text-center"
-          style={{ backgroundColor: 'rgba(220, 198, 170, 0.90)' }}
-        >
-          <p className="text-sm md:text-xl uppercase tracking-widest mb-3 font-light" style={{ color: '#ffffffff' }}>
-            Nos Casamos
-          </p>
-          <h1 
-            className="text-5xl md:text-6xl lg:text-7xl mb-3"
+{/* Hero Section */}
+<section
+  className="
+    relative
+    w-full
+    overflow-hidden
+    flex
+    justify-center
+    bg-no-repeat
+    bg-center
+    bg-cover
+  "
+  style={{
+    backgroundImage: `url(${FotoCortinaMarian})`,
+  }}
+>
 
-            style={{ fontFamily: "'Great Vibes', cursive", color: '#ffffffff' }}
-          >
-            Belén y Gil
-          </h1>
-          <p className="text-base md:text-xl uppercase tracking-wider font-light" style={{ color: '#ffffffff' }}>
-            12 Septiembre 2026
-          </p>
-          <Heart className="w-5 h-5 mx-auto mt-4" style={{ color: '#ffffffff' }} />
-        </div>
-      </section>
+  {/* Wrapper que define el ancho en desktop */}
+  <div className="relative w-full lg:w-1/2">
+
+    {/* Imagen principal */}
+    <img 
+      src={Boda1}
+      alt="Marian y Gil"
+      className="w-full h-auto block"
+    />
+
+    {/* Overlay oscuro */}
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+
+    {/* Contenido inferior */}
+    <div 
+      className="absolute bottom-0 left-0 w-full py-6 px-6 text-center z-10"
+      style={{ backgroundColor: 'rgba(220, 198, 170, 0.90)' }}
+    >
+      <p className="text-sm md:text-xl uppercase tracking-widest mb-3 font-light text-white">
+        Nos Casamos
+      </p>
+
+      <h1 
+        className="text-5xl md:text-6xl lg:text-7xl mb-3"
+        style={{ fontFamily: "'Great Vibes', cursive", color: '#ffffffff' }}
+      >
+        Belén y Gil
+      </h1>
+
+      <p className="text-base md:text-xl uppercase tracking-wider font-light text-white">
+        12 Septiembre 2026
+      </p>
+
+      <Heart className="w-5 h-5 mx-auto mt-4 text-white" />
+    </div>
+
+  </div>
+</section>
+
 
       {/* Cuenta Regresiva */}
       <section className="relative w-full overflow-hidden">
@@ -292,289 +355,644 @@ const WeddingInvitation = () => {
         </div>
       </section>
 
-      {/* Nombres Completos */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#DCC6AA' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl mb-12" style={{ color: '#F8F4EE' }}>
-            Marian Belén Sánchez Juárez
-          </h2>
-          <div className="text-6xl my-8" style={{ color: '#F8F4EE' }}>&</div>
-          <h2 className="text-4xl md:text-5xl" style={{ color: '#F8F4EE' }}>
-            Gilberto Gutiérrez Barrón
-          </h2>
-        </div>
-      </section>
+      {/* Invitación */}
+      <section className="relative w-full overflow-hidden flex justify-center" style={{
+    backgroundImage: `url(${FotoCortinaMarian})`,
+  }}>
 
-      {/* Primera Foto */}
-      <section className="py-8 md:py-16 lg:py-20 px-4">
-        <div className="max-w-sm md:max-w-2xl lg:max-w-4xl mx-auto">
-          <img 
-            src={Boda1}
-            alt="Foto de los Novios"
-            className="w-full h-auto rounded-lg shadow-2xl"
-          />
-        </div>
-      </section>
+  <img 
+    className="w-full lg:w-1/2 h-auto rounded-xl shadow-lg"
+    src={SaveTheDate}
+    alt="Fondo"
+  />
+</section>
+
 
       {/* Ceremonia Religiosa */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#F8F4EE' }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl mb-4" style={{ color: '#6B6C44' }}>Ceremonia Religiosa</h2>
-            <p className="text-2xl mb-4" style={{ color: '#6B6C44' }}>Santuario de La Congregación de Nuestra Señora de Guadalupe</p>
-            <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#F6CD44' }}></div>
-          </div>
-          
-          <div className="grid md:grid-cols-1 gap-8 text-center">
-            <div className="p-8 rounded-lg mb-8" style={{ backgroundColor: 'white' }}>
-              <Clock className="w-12 h-12 mx-auto mb-4" style={{ color: '#C3890B' }} />
-              <h3 className="text-2xl mb-2" style={{ color: '#6B6C44' }}>Hora</h3>
-              <p className="text-xl" style={{ color: '#C3890B' }}>4:00 PM</p>
-            </div>
-          </div>
-          
-          <div className="text-center mt-8">
-            <a 
-              href="https://maps.app.goo.gl/ZU2scjK687aD1tE38?g_st=iw"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white text-lg hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: '#C3890B' }}
-            >
-              <MapPin className="w-5 h-5" />
-              Ubicación
-            </a>
-          </div>
-        </div>
-      </section>
+<section className="py-12 md:py-20 px-4 bg-[#F8F4EE]">
+  <div className="max-w-4xl mx-auto">
 
-      {/* Segunda Foto */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#6B6C44' }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div 
-              className="aspect-square rounded-lg flex items-center justify-center text-white text-xl shadow-2xl"
-              style={{ backgroundColor: '#C3890B' }}
-            >
-              Foto de los Novios 2
-            </div>
-            <div 
-              className="aspect-square rounded-lg flex items-center justify-center text-white text-xl shadow-2xl"
-              style={{ backgroundColor: '#DCC6AA' }}
-            >
-              Foto de los Novios 3
-            </div>
-          </div>
-        </div>
-      </section>
+    {/* Título */}
+    <div className="text-center mb-8 md:mb-12">
+      <h2
+        className="text-xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
+        style={{ color: '#6B6C44' }}
+      >
+        Ceremonia Religiosa
+      </h2>
 
-      {/* Recepción */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#6B6C44' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl mb-4" style={{ color: '#F8F4EE' }}>Fiesta</h2>
-          <p className="text-2xl mb-4" style={{ color: '#F8F4EE' }}>Lantana Jardín y Salones</p>
-          <div className="w-24 h-1 mx-auto mb-12" style={{ backgroundColor: '#F6CD44' }}></div>
-          
-          <div className="p-8 rounded-lg mb-8" style={{ backgroundColor: 'rgba(248, 244, 238, 0.1)' }}>
-            <Clock className="w-12 h-12 mx-auto mb-4" style={{ color: '#F6CD44' }} />
-            <h3 className="text-2xl mb-2" style={{ color: '#F8F4EE' }}>Hora</h3>
-            <p className="text-xl" style={{ color: '#DCC6AA' }}>6:30 PM</p>
-          </div>
-          
-          <a 
-            href="https://maps.app.goo.gl/3iaKarTD2H2juk3VA?g_st=iw"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: '#F6CD44', color: '#6B6C44' }}
+      <p
+        className="text-sm md:text-base lg:text-lg mb-3"
+        style={{ color: '#6B6C44' }}
+      >
+        Santuario de La Congregación de Nuestra Señora de Guadalupe
+      </p>
+
+      <div className="w-16 md:w-24 h-1 mx-auto bg-[#F6CD44]" />
+    </div>
+
+    {/* Tarjeta hora */}
+    <div className="flex justify-center mb-8">
+  <div
+    className="
+      w-full
+      max-w-[240px] md:max-w-[320px]
+      p-5 md:p-8
+      rounded-lg
+      shadow-sm
+    "
+    style={{ backgroundColor: 'white' }}
+  >
+    <Clock
+      className="w-8 h-8 md:w-12 md:h-12 mx-auto mb-3 md:mb-4"
+      style={{ color: '#C3890B' }}
+    />
+
+    <h3
+      className="text-lg md:text-2xl mb-1 md:mb-2 text-center"
+      style={{ color: '#6B6C44' }}
+    >
+      Hora
+    </h3>
+
+    <p
+      className="text-base md:text-xl text-center"
+      style={{ color: '#C3890B' }}
+    >
+      4:00 PM
+    </p>
+  </div>
+</div>
+
+    {/* Botón ubicación */}
+    <div className="text-center mt-6 md:mt-8">
+      <a
+        href="https://maps.app.goo.gl/ZU2scjK687aD1tE38?g_st=iw"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="
+          inline-flex items-center gap-2
+          px-6 py-3 md:px-8 md:py-4
+          rounded-full
+          text-sm md:text-lg
+          text-white
+          hover:opacity-90
+          transition-opacity
+        "
+        style={{ backgroundColor: '#C3890B' }}
+      >
+        <MapPin className="w-4 h-4 md:w-5 md:h-5" />
+        Ubicación
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{/* Recepción */}
+<section className="py-12 md:py-20 px-4 bg-[#6B6C44]">
+  <div className="max-w-4xl mx-auto text-center">
+
+    {/* Título */}
+    <h2
+      className="text-xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
+      style={{ color: '#F8F4EE' }}
+    >
+      Fiesta
+    </h2>
+
+    <p
+      className="text-sm md:text-base lg:text-lg mb-3 md:mb-4"
+      style={{ color: '#F8F4EE' }}
+    >
+      Lantana Jardín y Salones
+    </p>
+
+    <div className="w-16 md:w-24 h-1 mx-auto mb-8 md:mb-12 bg-[#F6CD44]" />
+
+    {/* Tarjeta Hora */}
+    <div className="flex justify-center mb-8">
+      <div
+        className="
+          w-full
+          max-w-[240px] md:max-w-[320px]
+          p-5 md:p-8
+          rounded-lg
+          shadow-sm
+        "
+        style={{ backgroundColor: 'rgba(248, 244, 238, 0.12)' }}
+      >
+        <Clock
+          className="w-8 h-8 md:w-12 md:h-12 mx-auto mb-3 md:mb-4"
+          style={{ color: '#F6CD44' }}
+        />
+
+        <h3
+          className="text-lg md:text-2xl mb-1 md:mb-2"
+          style={{ color: '#F8F4EE' }}
+        >
+          Hora
+        </h3>
+
+        <p
+          className="text-base md:text-xl"
+          style={{ color: '#DCC6AA' }}
+        >
+          6:30 PM
+        </p>
+      </div>
+    </div>
+
+    {/* Botón ubicación */}
+    <a
+      href="https://maps.app.goo.gl/3iaKarTD2H2juk3VA?g_st=iw"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        inline-flex items-center gap-2
+        px-6 py-3 md:px-8 md:py-4
+        rounded-full
+        text-sm md:text-lg
+        hover:opacity-90
+        transition-opacity
+      "
+      style={{ backgroundColor: '#F6CD44', color: '#6B6C44' }}
+    >
+      <MapPin className="w-4 h-4 md:w-5 md:h-5" />
+      Ubicación
+    </a>
+
+  </div>
+</section>
+
+       
+
+     {/* Padrinos */}
+<section className="py-14 md:py-20 px-4" style={{ backgroundColor: '#F8F4EE' }}>
+  <div className="max-w-4xl mx-auto">
+
+    {/* Título */}
+    <div className="text-center mb-10 md:mb-12">
+      <h2
+        className="text-2xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
+        style={{ color: '#6B6C44' }}
+      >
+        Padrinos
+      </h2>
+
+      <div
+        className="w-16 md:w-24 h-1 mx-auto"
+        style={{ backgroundColor: '#F6CD44' }}
+      />
+    </div>
+
+    {/* Tarjetas */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {padrinos.map((padrino, idx) => (
+        <div
+          key={idx}
+          className="
+            w-full
+            max-w-[320px] md:max-w-none
+            mx-auto
+            p-5 md:p-6
+            rounded-lg
+            shadow-sm
+          "
+          style={{ backgroundColor: 'white' }}
+        >
+          <h3
+            className="text-lg md:text-2xl mb-3 md:mb-4 text-center uppercase tracking-wide"
+            style={{ color: '#C3890B' }}
           >
-            <MapPin className="w-5 h-5" />
-            Ubicación
-          </a>
-        </div>
-      </section>
+            {padrino.tipo}
+          </h3>
 
-      {/* Tercera Foto */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div 
-            className="aspect-[16/9] rounded-lg flex items-center justify-center text-white text-2xl shadow-2xl"
-            style={{ backgroundColor: '#F6CD44', color: '#6B6C44' }}
-          >
-            Foto de los Novios 4
-          </div>
-        </div>
-      </section>
-
-      {/* Padrinos */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#F8F4EE' }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl mb-4" style={{ color: '#6B6C44' }}>Padrinos</h2>
-            <div className="w-24 h-1 mx-auto" style={{ backgroundColor: '#F6CD44' }}></div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {padrinos.map((padrino, idx) => (
-              <div key={idx} className="p-6 rounded-lg" style={{ backgroundColor: 'white' }}>
-                <h3 className="text-2xl mb-4 text-center" style={{ color: '#C3890B' }}>{padrino.tipo}</h3>
-                <div className="space-y-2 text-center">
-                  {padrino.nombres.map((nombre, i) => (
-                    <p key={i} className="text-lg" style={{ color: '#6B6C44' }}>{nombre}</p>
-                  ))}
-                </div>
-              </div>
+          <div className="space-y-1 md:space-y-2 text-center">
+            {padrino.nombres.map((nombre, i) => (
+              <p
+                key={i}
+                className="text-sm md:text-lg"
+                style={{ color: '#6B6C44' }}
+              >
+                {nombre}
+              </p>
             ))}
           </div>
         </div>
-      </section>
+      ))}
+    </div>
 
-      {/* Cuarta Foto */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#DCC6AA' }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div 
-              className="aspect-[3/4] rounded-lg flex items-center justify-center text-white text-lg shadow-2xl"
-              style={{ backgroundColor: '#6B6C44' }}
-            >
-              Foto 5
-            </div>
-            <div 
-              className="aspect-[3/4] rounded-lg flex items-center justify-center text-white text-lg shadow-2xl"
-              style={{ backgroundColor: '#C3890B' }}
-            >
-              Foto 6
-            </div>
-            <div 
-              className="aspect-[3/4] rounded-lg flex items-center justify-center text-lg shadow-2xl"
-              style={{ backgroundColor: '#F6CD44', color: '#6B6C44' }}
-            >
-              Foto 7
-            </div>
-          </div>
+  </div>
+</section>
+
+
+  
+{/* Fotos */}
+<section className="py-20 px-4 bg-[#DCC6AA] relative">
+  <div className="max-w-5xl mx-auto relative">
+
+    {/* Flecha izquierda */}
+    <ChevronLeft
+      onClick={() => scrollCarousel("left")}
+      className="
+        absolute left-2 top-1/2 -translate-y-1/2 z-10
+        text-white opacity-80 md:hidden
+        cursor-pointer
+      "
+      size={32}
+    />
+
+    {/* Flecha derecha */}
+    <ChevronRight
+      onClick={() => scrollCarousel("right")}
+      className="
+        absolute right-2 top-1/2 -translate-y-1/2 z-10
+        text-white opacity-80 md:hidden
+        cursor-pointer
+      "
+      size={32}
+    />
+
+    {/* Carrusel */}
+    <div
+      ref={carouselRef}
+      className="
+        flex gap-4
+        overflow-x-auto
+        snap-x snap-mandatory
+        scroll-smooth
+        scrollbar-hide
+        md:grid md:grid-cols-3 md:overflow-visible
+      "
+    >
+      {[SaveTheDate2, SaveTheDate3, SaveTheDate4].map((img, index) => (
+        <div
+          key={index}
+          className="
+            snap-center
+            min-w-[80%] sm:min-w-[60%]
+            md:min-w-0
+            aspect-[3/4]
+            rounded-lg
+            overflow-hidden
+            shadow-2xl
+          "
+        >
+          <img
+            src={img}
+            alt="Foto Marian y Gil"
+            className="w-full h-full object-cover"
+          />
         </div>
-      </section>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+
 
       {/* Dress Code */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl mb-4" style={{ color: '#6B6C44' }}>Dress Code</h2>
-          <div className="w-24 h-1 mx-auto mb-12" style={{ backgroundColor: '#F6CD44' }}></div>
-          
-          <div className="text-3xl mb-8" style={{ color: '#C3890B' }}>FORMAL</div>
-          
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="p-6 rounded-lg" style={{ backgroundColor: '#F8F4EE' }}>
-              <h3 className="text-2xl mb-4" style={{ color: '#6B6C44' }}>Hombres</h3>
-              <p className="text-xl" style={{ color: '#C3890B' }}>TRAJE</p>
-            </div>
-            
-            <div className="p-6 rounded-lg" style={{ backgroundColor: '#F8F4EE' }}>
-              <h3 className="text-2xl mb-4" style={{ color: '#6B6C44' }}>Mujeres</h3>
-              <p className="text-xl" style={{ color: '#C3890B' }}>VESTIDO LARGO</p>
-            </div>
-          </div>
-          
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#F8F4EE' }}>
-            <p className="text-lg mb-2" style={{ color: '#6B6C44' }}>
-              Color <strong>Blanco, Rojo y Amarillo</strong>
-            </p>
-            <p className="text-lg" style={{ color: '#6B6C44' }}>
-              Reservado para la novia y damas de honor
-            </p>
-            <p className="text-lg mt-4" style={{ color: '#6B6C44' }}>
-              ❌ No Tenis
-            </p>
-          </div>
-        </div>
-      </section>
+<section className="py-14 md:py-20 px-4" style={{ backgroundColor: '#F8F4EE' }}>
+  <div className="max-w-4xl mx-auto text-center">
 
-      {/* Mesa de Regalos */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#6B6C44' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl mb-4" style={{ color: '#F8F4EE' }}>Mesa de Regalos</h2>
-          <div className="w-24 h-1 mx-auto mb-12" style={{ backgroundColor: '#F6CD44' }}></div>
-          
-          <p className="text-xl mb-8" style={{ color: '#DCC6AA' }}>
-            Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo:
-          </p>
-          
-          <a 
-            href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51921084"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: '#F6CD44', color: '#6B6C44' }}
-          >
-            <Gift className="w-5 h-5" />
-            Ver Mesa de Regalos Liverpool
-          </a>
-        </div>
-      </section>
+    {/* Título */}
+    <h2
+      className="text-2xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
+      style={{ color: '#6B6C44' }}
+    >
+      Dress Code
+    </h2>
+
+    <div
+      className="w-16 md:w-24 h-1 mx-auto mb-8 md:mb-12"
+      style={{ backgroundColor: '#F6CD44' }}
+    />
+
+    {/* Tipo */}
+    <p
+      className="text-lg md:text-2xl lg:text-3xl mb-6 md:mb-8 uppercase tracking-widest"
+      style={{ color: '#C3890B' }}
+    >
+      Formal
+    </p>
+
+    {/* Tarjetas */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
+      
+      {/* Hombres */}
+      <div
+        className="
+          w-full
+          max-w-[300px] md:max-w-none
+          mx-auto
+          p-5 md:p-6
+          rounded-lg
+          shadow-sm
+        "
+        style={{ backgroundColor: 'white' }}
+      >
+        <div className="text-4xl mb-2">👔</div>
+        <h3
+          className="text-lg md:text-2xl mb-1 md:mb-2"
+          style={{ color: '#6B6C44' }}
+        >
+          Hombres
+        </h3>
+        <p
+          className="text-sm md:text-xl uppercase tracking-wide"
+          style={{ color: '#C3890B' }}
+        >
+          Traje
+        </p>
+      </div>
+
+      {/* Mujeres */}
+      <div
+        className="
+          w-full
+          max-w-[300px] md:max-w-none
+          mx-auto
+          p-5 md:p-6
+          rounded-lg
+          shadow-sm
+        "
+        style={{ backgroundColor: 'white' }}
+      >
+        <div className="text-4xl mb-2">👗</div>
+        <h3
+          className="text-lg md:text-2xl mb-1 md:mb-2"
+          style={{ color: '#6B6C44' }}
+        >
+          Mujeres
+        </h3>
+        <p
+          className="text-sm md:text-xl uppercase tracking-wide"
+          style={{ color: '#C3890B' }}
+        >
+          Vestido largo
+        </p>
+      </div>
+
+    </div>
+
+    {/* Reglas */}
+    <div
+      className="
+        w-full
+        max-w-[420px]
+        mx-auto
+        p-5 md:p-6
+        rounded-lg
+        shadow-sm
+      "
+      style={{ backgroundColor: 'white' }}
+    >
+      <p className="text-sm md:text-lg mb-2" style={{ color: '#6B6C44' }}>
+        Colores <strong>Blanco, Rojo y Amarillo</strong>
+      </p>
+      <p className="text-sm md:text-lg" style={{ color: '#6B6C44' }}>
+        Reservados para la novia y damas de honor
+      </p>
+      <p className="text-sm md:text-lg mt-3" style={{ color: '#6B6C44' }}>
+        ❌ No tenis
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+  {/* Mesa de Regalos */}
+<section
+  className="py-14 md:py-20 px-4"
+  style={{ backgroundColor: "#6B6C44" }}
+>
+  <div className="max-w-4xl mx-auto text-center">
+
+    {/* Título */}
+    <h2
+      className="text-2xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
+      style={{ color: "#F8F4EE" }}
+    >
+      Mesa de Regalos
+    </h2>
+
+    {/* Línea */}
+    <div
+      className="w-16 md:w-24 h-1 mx-auto mb-8 md:mb-12"
+      style={{ backgroundColor: "#F6CD44" }}
+    />
+
+    {/* Texto */}
+    <p
+      className="text-sm md:text-lg mb-6 md:mb-8 leading-relaxed"
+      style={{ color: "#DCC6AA" }}
+    >
+      Tu presencia es nuestro mejor regalo,  
+      pero si deseas obsequiarnos algo:
+    </p>
+
+    {/* Tarjeta */}
+    <div
+      className="
+        mx-auto
+        w-full
+        max-w-[260px] sm:max-w-[300px] md:max-w-[360px]
+        p-5 md:p-6
+        rounded-2xl
+        flex flex-col
+        items-center
+        gap-5
+        shadow-sm
+      "
+      style={{ backgroundColor: "#F8F4EE" }}
+    >
+      {/* Logo Liverpool */}
+      <img
+        src={LiverpoolLogo}
+        alt="Liverpool"
+        className="w-24 md:w-28 h-auto object-contain"
+      />
+
+      {/* Botón */}
+      <a
+        href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51921084"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="
+          inline-flex items-center justify-center gap-2
+          px-6 md:px-8
+          py-3
+          rounded-full
+          text-sm md:text-base
+          hover:opacity-90 transition
+        "
+        style={{
+          backgroundColor: "#F6CD44",
+          color: "#6B6C44",
+        }}
+      >
+        🎁 Ver Mesa de Regalos
+      </a>
+    </div>
+
+  </div>
+</section>
+
 
       {/* Quinta Foto */}
-      <section className="py-20 px-4">
+      
         <div className="max-w-4xl mx-auto">
           <div 
             className="aspect-video rounded-lg flex items-center justify-center text-white text-2xl shadow-2xl"
             style={{ backgroundColor: '#DCC6AA' }}
           >
-            Foto de los Novios 8
+                     <img 
+      src={SaveTheDate5}
+      alt="Marian y Gil"
+      className="w-full h-auto block"
+    />
           </div>
         </div>
-      </section>
+      
 
       {/* Confirmación */}
-      <section className="py-20 px-4" style={{ backgroundColor: '#F8F4EE' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl mb-4" style={{ color: '#6B6C44' }}>Confirma tu Asistencia</h2>
-          <div className="w-24 h-1 mx-auto mb-12" style={{ backgroundColor: '#F6CD44' }}></div>
-          
-          <p className="text-xl mb-8" style={{ color: '#6B6C44' }}>
-            Por favor confirma tu asistencia antes del 30 de marzo para asegurar tu lugar y ayudarnos con la organización del evento.
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-6 rounded-lg" style={{ backgroundColor: 'white' }}>
-              <h3 className="text-2xl mb-4" style={{ color: '#C3890B' }}>Invitados del Novio</h3>
-              <a 
-                href="https://wa.me/524427491821"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: '#6B6C44', color: '#F8F4EE' }}
-              >
-                Confirmar
-              </a>
-            </div>
-            
-            <div className="p-6 rounded-lg" style={{ backgroundColor: 'white' }}>
-              <h3 className="text-2xl mb-4" style={{ color: '#C3890B' }}>Invitados de la Novia</h3>
-              <a 
-                href="https://wa.me/524423762369"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: '#6B6C44', color: '#F8F4EE' }}
-              >
-                
-                Confirmar
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+<section
+  className="py-14 md:py-20 px-4"
+  style={{ backgroundColor: "#F8F4EE" }}
+>
+  <div className="max-w-4xl mx-auto text-center">
+
+    {/* Título */}
+    <h2
+      className="text-2xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
+      style={{ color: "#6B6C44" }}
+    >
+      Confirma tu Asistencia
+    </h2>
+
+    {/* Línea */}
+    <div
+      className="w-16 md:w-24 h-1 mx-auto mb-8 md:mb-12"
+      style={{ backgroundColor: "#F6CD44" }}
+    />
+
+    {/* Texto */}
+    <p
+      className="text-sm md:text-lg mb-8 md:mb-10 leading-relaxed"
+      style={{ color: "#6B6C44" }}
+    >
+      Por favor confirma tu asistencia antes del <strong>30 de marzo </strong>  
+      para asegurar tu lugar y ayudarnos con la organización del evento.
+    </p>
+
+    {/* Tarjetas */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+      {/* Novio */}
+      <div
+        className="
+          w-full
+          max-w-[280px] md:max-w-none
+          mx-auto
+          p-5 md:p-6
+          rounded-xl
+          shadow-sm
+        "
+        style={{ backgroundColor: "white" }}
+      >
+        <h3
+          className="text-lg md:text-2xl mb-4"
+          style={{ color: "#C3890B" }}
+        >
+          Invitados del Novio
+        </h3>
+
+        <a
+          href="https://wa.me/524427491821"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex items-center justify-center
+            px-6 py-3
+            rounded-full
+            text-sm md:text-base
+            hover:opacity-90 transition
+          "
+          style={{ backgroundColor: "#6B6C44", color: "#F8F4EE" }}
+        >
+          Confirmar
+        </a>
+      </div>
+
+      {/* Novia */}
+      <div
+        className="
+          w-full
+          max-w-[280px] md:max-w-none
+          mx-auto
+          p-5 md:p-6
+          rounded-xl
+          shadow-sm
+        "
+        style={{ backgroundColor: "white" }}
+      >
+        <h3
+          className="text-lg md:text-2xl mb-4"
+          style={{ color: "#C3890B" }}
+        >
+          Invitados de la Novia
+        </h3>
+
+        <a
+          href="https://wa.me/524423762369"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex items-center justify-center
+            px-6 py-3
+            rounded-full
+            text-sm md:text-base
+            hover:opacity-90 transition
+          "
+          style={{ backgroundColor: "#6B6C44", color: "#F8F4EE" }}
+        >
+          Confirmar
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Footer */}
-      <footer className="py-12 px-4 text-center" style={{ backgroundColor: '#6B6C44' }}>
-        <Heart className="w-8 h-8 mx-auto mb-4" style={{ color: '#F6CD44' }} />
-        <p className="text-lg" style={{ color: '#F8F4EE' }}>
-          ¡Nos vemos el 12 de Septiembre!
-        </p>
-        <p className="mt-2" style={{ color: '#DCC6AA' }}>
-          Marian & Gilberto
-        </p>
-      </footer>
+<footer
+  className="py-10 md:py-12 px-4 text-center"
+  style={{ backgroundColor: "#6B6C44" }}
+>
+  <Heart
+    className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-3"
+    style={{ color: "#F6CD44" }}
+  />
+
+  <p
+    className="text-sm md:text-lg"
+    style={{ color: "#F8F4EE" }}
+  >
+    ¡Nos vemos el 12 de Septiembre!
+  </p>
+
+  <p
+    className="mt-1 text-sm md:text-base"
+    style={{ color: "#DCC6AA" }}
+  >
+    Marian & Gilberto
+  </p>
+</footer>
+
     </div>
   );
 };
