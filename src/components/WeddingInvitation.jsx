@@ -1,16 +1,16 @@
 import { ChevronLeft, ChevronRight, Clock, Heart, MapPin } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
-import Boda1 from './assets/Boda1.jpg';
-import Boda2 from './assets/Boda2.jpg';
-import FotoCortinaMarian from './assets/Cortina de flores.png';
-import FotoCortinaGilberto from './assets/Cortina flores Izquierda.png';
-import FondoFlores from './assets/FondoFlores.png';
-import LiverpoolLogo from './assets/LiverpoolLogo.png';
-import SaveTheDate from './assets/SaveTheDate.png';
-import SaveTheDate2 from './assets/SaveTheDate2.jpg';
-import SaveTheDate3 from './assets/SaveTheDate3.jpg';
-import SaveTheDate4 from './assets/SaveTheDate4.jpg';
-import SaveTheDate5 from './assets/SaveTheDate5.jpg';
+import Boda1 from '../assets/Boda1.jpg';
+import Boda2 from '../assets/Boda2.jpg';
+import FotoCortinaMarian from '../assets/Cortina de flores.png';
+import FotoCortinaGilberto from '../assets/Cortina flores Izquierda.png';
+import FondoFlores from '../assets/FondoFlores.png';
+import LiverpoolLogo from '../assets/LiverpoolLogo.png';
+import SaveTheDate from '../assets/SaveTheDate.png';
+import SaveTheDate2 from '../assets/SaveTheDate2.jpg';
+import SaveTheDate3 from '../assets/SaveTheDate3.jpg';
+import SaveTheDate4 from '../assets/SaveTheDate4.jpg';
+import SaveTheDate5 from '../assets/SaveTheDate5.jpg';
 const WeddingInvitation = () => {
  const carouselRef = useRef(null);
 useEffect(() => {
