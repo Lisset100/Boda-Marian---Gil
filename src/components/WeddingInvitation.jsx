@@ -960,7 +960,7 @@ const WeddingInvitation = () => {
         </h3>
 
         <a
-          href="https://wa.me/524427491821?text=Hola%20😊%20Confirmo%20mi%20asistencia%20para%20acompa%C3%B1arlos%20en%20este%20evento%20tan%20especial%20y%20m%C3%A1gico.%20✨%F0%9F%92%9B"
+          href="https://wa.me/524423762369?text=Hola%20😊%20Confirmo%20mi%20asistencia%20para%20acompa%C3%B1arlos%20en%20este%20evento%20tan%20especial%20y%20m%C3%A1gico.%20✨%F0%9F%92%9B"
   target="_blank"
           rel="noopener noreferrer"
           className="
