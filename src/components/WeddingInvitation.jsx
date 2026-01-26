@@ -2,15 +2,16 @@ import { ChevronLeft, ChevronRight, Clock, Heart, MapPin } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
 import Boda1 from '../assets/Boda1.jpg';
 import Boda2 from '../assets/Boda2.jpg';
-import FotoCortinaMarian from '../assets/Cortina de flores.png';
 import FotoCortinaGilberto from '../assets/Cortina flores Izquierda.png';
 import FondoFlores from '../assets/FondoFlores.png';
+import FondoFlores10 from '../assets/FondoFlores10.svg';
 import LiverpoolLogo from '../assets/LiverpoolLogo.png';
 import SaveTheDate from '../assets/SaveTheDate.png';
 import SaveTheDate2 from '../assets/SaveTheDate2.jpg';
 import SaveTheDate3 from '../assets/SaveTheDate3.jpg';
 import SaveTheDate4 from '../assets/SaveTheDate4.jpg';
 import SaveTheDate5 from '../assets/SaveTheDate5.jpg';
+import SaveTheDate8 from '../assets/SaveTheDate8.svg';
 const WeddingInvitation = () => {
  const carouselRef = useRef(null);
   const lastTouchY = useRef(0);
@@ -146,7 +147,7 @@ const WeddingInvitation = () => {
           style={{ 
             transform: `translateX(-${scrollAmount}%)`,
             backgroundColor: '#DCC6AA',
-            backgroundImage: `linear-gradient(rgba(220, 198, 170, 0.7), rgba(220, 198, 170, 0.7)), url(${FotoCortinaMarian})`,
+            backgroundImage: `linear-gradient(rgba(220, 198, 170, 0.7), rgba(220, 198, 170, 0.7)), url(${SaveTheDate8})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -265,7 +266,7 @@ const WeddingInvitation = () => {
       </h1>
 
       <h3 className="text-base md:text-xl uppercase tracking-wider font-light text-white">
-        12 Septiembre 2026
+        12 de Septiembre de 2026
       </h3>
 
       <Heart className="w-5 h-5 mx-auto mt-4 text-white" />
@@ -382,27 +383,72 @@ const WeddingInvitation = () => {
 
 
       {/* Ceremonia Religiosa */}
-<section className="py-12 md:py-20 px-4 bg-[#F8F4EE]">
+<section 
+  className="py-12 md:py-20 px-4 relative"
+  style={{ 
+    backgroundColor: '#F8F4EE',
+    backgroundImage: `url(${FondoFlores10})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }}
+>
   <div className="max-w-4xl mx-auto">
 
-    {/* Título */}
-    <div className="text-center mb-8 md:mb-12">
-      <h2
-        className="text-xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
-        style={{ color: '#6B6C44' }}
-      >
-        Ceremonia Religiosa
-      </h2>
+   {/* Título */}
+<div className="text-center mb-8 md:mb-12">
 
-      <p
-        className="text-sm md:text-base lg:text-lg mb-3"
-        style={{ color: '#6B6C44' }}
-      >
-        Santuario de La Congregación de Nuestra Señora de Guadalupe
-      </p>
+  {/* TÍTULO */}
+  <div className="relative inline-block">
+    <div 
+      className="absolute inset-0 -inset-x-8 -inset-y-2 rounded-lg blur-sm"
+      style={{ backgroundColor: 'rgba(248, 244, 238, 0.9)' }}
+    ></div>
 
-      <div className="w-16 md:w-24 h-1 mx-auto bg-[#F6CD44]" />
-    </div>
+    <h1
+      className="relative text-xl md:text-4xl lg:text-5xl mb-4 px-8"
+      style={{ 
+        color: '#6B6C44',
+        textShadow: `
+          -1px -1px 0 #F8F4EE,
+           1px -1px 0 #F8F4EE,
+          -1px  1px 0 #F8F4EE,
+           1px  1px 0 #F8F4EE,
+           2px 2px 4px rgba(0, 0, 0, 0.3)
+        `
+      }}
+    >
+      Ceremonia Religiosa
+    </h1>
+  </div>
+
+  {/* SUBTÍTULO */}
+  <div className="relative inline-block mt-4">
+    <div 
+      className="absolute inset-0 -inset-x-6 -inset-y-2 rounded-lg blur-sm"
+      style={{ backgroundColor: 'rgba(248, 244, 238, 0.9)' }}
+    ></div>
+
+    <h2
+      className="relative text-sm md:text-base lg:text-lg px-6 py-1"
+      style={{ 
+        color: '#6B6C44',
+        textShadow: `
+          -1px -1px 0 #F8F4EE,
+           1px -1px 0 #F8F4EE,
+          -1px  1px 0 #F8F4EE,
+           1px  1px 0 #F8F4EE,
+           1px 1px 3px rgba(0, 0, 0, 0.25)
+        `
+      }}
+    >
+      Santuario de La Congregación de Nuestra Señora de Guadalupe
+    </h2>
+  </div>
+
+  <div className="w-16 md:w-24 h-1 mx-auto bg-[#F6CD44] mt-6" />
+</div>
+
 
     {/* Tarjeta hora */}
     <div className="flex justify-center mb-8">
@@ -463,25 +509,76 @@ const WeddingInvitation = () => {
 </section>
 
 {/* Recepción */}
-<section className="py-12 md:py-20 px-4 bg-[#6B6C44]">
+ <section 
+  className="py-12 md:py-20 px-4 relative"
+  style={{ 
+    backgroundColor: '#6B6C44',
+    backgroundImage: `url(${FondoFlores10})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }}
+>
+
   <div className="max-w-4xl mx-auto text-center">
 
     {/* Título */}
-    <h2
-      className="text-xl md:text-4xl lg:text-5xl mb-3 md:mb-4"
-      style={{ color: '#F8F4EE' }}
-    >
-      Fiesta
-    </h2>
+<div className="text-center mb-8 md:mb-12">
 
-    <p
-      className="text-sm md:text-base lg:text-lg mb-3 md:mb-4"
-      style={{ color: '#F8F4EE' }}
-    >
-      Lantana Jardín y Salones
-    </p>
+  {/* TÍTULO */}
+  <div className="block">
+    <div className="relative inline-block">
+      <div 
+        className="absolute inset-0 -inset-x-8 -inset-y-2 rounded-lg blur-sm"
+        style={{ backgroundColor: 'rgba(107, 108, 68, 0.9)' }}
+      ></div>
 
-    <div className="w-16 md:w-24 h-1 mx-auto mb-8 md:mb-12 bg-[#F6CD44]" />
+      <h1
+        className="relative text-xl md:text-4xl lg:text-5xl mb-4 px-8"
+        style={{ 
+          color: '#F8F4EE',
+          textShadow: `
+            -1px -1px 0 rgba(0,0,0,0.35),
+             1px -1px 0 rgba(0,0,0,0.35),
+            -1px  1px 0 rgba(0,0,0,0.35),
+             1px  1px 0 rgba(0,0,0,0.35),
+             2px 2px 6px rgba(0, 0, 0, 0.6)
+          `
+        }}
+      >
+        Fiesta
+      </h1>
+    </div>
+  </div>
+
+  {/* SUBTÍTULO */}
+  <div className="block mt-4">
+    <div className="relative inline-block">
+      <div 
+        className="absolute inset-0 -inset-x-6 -inset-y-2 rounded-lg blur-sm"
+        style={{ backgroundColor: 'rgba(107, 108, 68, 0.9)' }}
+      ></div>
+
+      <h2
+        className="relative text-sm md:text-base lg:text-lg px-6 py-1"
+        style={{ 
+          color: '#F8F4EE',
+          textShadow: `
+            -1px -1px 0 rgba(0,0,0,0.35),
+             1px -1px 0 rgba(0,0,0,0.35),
+            -1px  1px 0 rgba(0,0,0,0.35),
+             1px  1px 0 rgba(0,0,0,0.35),
+             1px 1px 4px rgba(0, 0, 0, 0.55)
+          `
+        }}
+      >
+        Lantana Jardín y Salones
+      </h2>
+    </div>
+  </div>
+
+  <div className="w-16 md:w-24 h-1 mx-auto bg-[#F6CD44] mt-6" />
+</div>
 
     {/* Tarjeta Hora */}
     <div className="flex justify-center mb-8">
@@ -995,7 +1092,11 @@ const WeddingInvitation = () => {
     className="text-sm md:text-lg"
     style={{ color: "#F8F4EE" }}
   >
-    ¡Nos vemos el 12 de Septiembre!
+Amamos a los pequeños, pero esta ocasión especial será una celebración solo para adultos.
+Gracias por acompañarnos.
+<br />
+¡Nos vemos el 12 de Septiembre!
+
   </p>
 
   <p
