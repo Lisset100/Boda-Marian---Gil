@@ -12,6 +12,7 @@ import SaveTheDate3 from '../assets/SaveTheDate3.jpg';
 import SaveTheDate4 from '../assets/SaveTheDate4.jpg';
 import SaveTheDate5 from '../assets/SaveTheDate5.jpg';
 import SaveTheDate8 from '../assets/SaveTheDate8.svg';
+
 const WeddingInvitation = () => {
  const carouselRef = useRef(null);
   const lastTouchY = useRef(0);
