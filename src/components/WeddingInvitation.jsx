@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight, Clock, Heart, MapPin } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
 import Boda1 from '../assets/Boda1.jpg';
 import Boda2 from '../assets/Boda2.jpg';
-import FotoCortinaGilberto from '../assets/Cortina flores Izquierda.png';
+import FotoCortinaGilberto from '../assets/Cortina flores Izquierda.webp';
 import FondoFlores from '../assets/FondoFlores.png';
 import FondoFlores10 from '../assets/FondoFlores10.svg';
 import LiverpoolLogo from '../assets/LiverpoolLogo.png';
@@ -11,7 +11,7 @@ import SaveTheDate2 from '../assets/SaveTheDate2.jpg';
 import SaveTheDate3 from '../assets/SaveTheDate3.jpg';
 import SaveTheDate4 from '../assets/SaveTheDate4.jpg';
 import SaveTheDate5 from '../assets/SaveTheDate5.jpg';
-import SaveTheDate8 from '../assets/SaveTheDate8.svg';
+import SaveTheDate8 from '../assets/Cortina de flores.webp';
 
 const WeddingInvitation = () => {
  const carouselRef = useRef(null);
@@ -108,7 +108,7 @@ const WeddingInvitation = () => {
   // 4. EFECTO PARA EL CONTADOR (Time Left)
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const weddingDate = new Date('2026-09-12T16:00:00');
+      const weddingDate = new Date('2026-09-12T16:00:00-06:00');
       const now = new Date();
       const difference = weddingDate - now;
 
@@ -137,15 +137,15 @@ const WeddingInvitation = () => {
   return (
     <div className="min-h-screen bg-stone-50" style={{ fontFamily: 'Georgia, serif' }}>
       {/* Animación de Apertura con Scroll */}
-      <div 
+      <div
         className={`fixed inset-0 z-50 transition-opacity duration-1000 ${
           isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
         {/* Pétalo Izquierdo con imagen de fondo */}
-        <div 
+        <div
           className="absolute top-0 left-0 w-1/2 h-full transition-transform duration-700 ease-out"
-          style={{ 
+          style={{
             transform: `translateX(-${scrollAmount}%)`,
             backgroundColor: '#DCC6AA',
             backgroundImage: `linear-gradient(rgba(220, 198, 170, 0.7), rgba(220, 198, 170, 0.7)), url(${SaveTheDate8})`,
@@ -160,11 +160,11 @@ const WeddingInvitation = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Pétalo Derecho con imagen de fondo */}
-        <div 
+        <div
           className="absolute top-0 right-0 w-1/2 h-full transition-transform duration-700 ease-out"
-          style={{ 
+          style={{
             transform: `translateX(${scrollAmount}%)`,
             backgroundColor: '#C3890B',
             backgroundImage: `linear-gradient(rgba(195, 137, 11, 0.7), rgba(195, 137, 11, 0.7)), url(${FotoCortinaGilberto})`,
@@ -179,16 +179,16 @@ const WeddingInvitation = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Centro - Indicador de scroll */}
         <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center">
           <div className="flex flex-col items-center">
             <div className="animate-bounce mb-2">
-              <svg 
-                className="w-8 h-8" 
-                fill="none" 
-                stroke="#F6CD44" 
-                strokeWidth="3" 
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="#F6CD44"
+                strokeWidth="3"
                 viewBox="0 0 24 24"
               >
                 <path d="M5 15l7-7 7 7" />
@@ -199,7 +199,7 @@ const WeddingInvitation = () => {
             </p>
             {/* Barra de progreso */}
             <div className="w-32 h-1 bg-white/30 rounded-full mt-4 overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-white transition-all duration-300"
                 style={{ width: `${scrollAmount}%` }}
               ></div>
@@ -209,13 +209,13 @@ const WeddingInvitation = () => {
 
         {/* Corazón central */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Heart 
+          <Heart
             className="w-12 h-12 transition-all duration-500"
-            style={{ 
+            style={{
               color: '#F6CD44',
               transform: `scale(${1 + scrollAmount / 100})`,
               opacity: 1 - scrollAmount / 100
-            }} 
+            }}
           />
         </div>
       </div>
@@ -241,7 +241,7 @@ const WeddingInvitation = () => {
   <div className="relative w-full lg:w-1/2">
 
     {/* Imagen principal */}
-    <img 
+    <img
       src={Boda1}
       alt="Marian y Gil"
       className="w-full h-auto block"
@@ -251,7 +251,7 @@ const WeddingInvitation = () => {
     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
 
     {/* Contenido inferior */}
-    <div 
+    <div
       className="absolute bottom-0 left-0 w-full py-6 px-6 text-center z-10"
       style={{ backgroundColor: 'rgba(220, 198, 170, 0.90)' }}
     >
@@ -259,7 +259,7 @@ const WeddingInvitation = () => {
         ¡Nos Casamos!
       </h3>
 
-      <h1 
+      <h1
         className="text-5xl md:text-6xl lg:text-7xl mb-3"
         style={{ fontFamily: "'Great Vibes', cursive", color: '#ffffffff' }}
       >
@@ -280,15 +280,15 @@ const WeddingInvitation = () => {
       {/* Cuenta Regresiva */}
       <section className="relative w-full overflow-hidden">
         {/* Imagen de fondo */}
-        <img 
+        <img
           className="w-full h-auto"
           src={Boda2}
           alt="Fondo"
         />
-        
+
         {/* Overlay oscuro */}
         <div className="bg-black/40 absolute inset-0"></div>
-        
+
         {/* Contador - posicionado sobre la imagen */}
         <div className="absolute inset-0 flex flex-col justify-center items-center px-4 py-8">
           <h2 className="text-3xl md:text-5xl mb-8 md:mb-16 text-white font-light tracking-wide">
@@ -297,9 +297,9 @@ const WeddingInvitation = () => {
           <div className="flex space-x-3 md:space-x-8 lg:space-x-12">
             {/* Días */}
             <div className="flex flex-col items-center">
-              <div 
+              <div
                 className="w-16 h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-lg backdrop-blur-sm border-2 mb-2"
-                style={{ 
+                style={{
                   backgroundColor: 'rgba(248, 244, 238, 0.15)',
                   borderColor: 'rgba(248, 244, 238, 0.3)'
                 }}
@@ -315,9 +315,9 @@ const WeddingInvitation = () => {
 
             {/* Horas */}
             <div className="flex flex-col items-center">
-              <div 
+              <div
                 className="w-16 h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-lg backdrop-blur-sm border-2 mb-2"
-                style={{ 
+                style={{
                   backgroundColor: 'rgba(248, 244, 238, 0.15)',
                   borderColor: 'rgba(248, 244, 238, 0.3)'
                 }}
@@ -333,9 +333,9 @@ const WeddingInvitation = () => {
 
             {/* Minutos */}
             <div className="flex flex-col items-center">
-              <div 
+              <div
                 className="w-16 h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-lg backdrop-blur-sm border-2 mb-2"
-                style={{ 
+                style={{
                   backgroundColor: 'rgba(248, 244, 238, 0.15)',
                   borderColor: 'rgba(248, 244, 238, 0.3)'
                 }}
@@ -351,9 +351,9 @@ const WeddingInvitation = () => {
 
             {/* Segundos */}
             <div className="flex flex-col items-center">
-              <div 
+              <div
                 className="w-16 h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-lg backdrop-blur-sm border-2 mb-2"
-                style={{ 
+                style={{
                   backgroundColor: 'rgba(248, 244, 238, 0.15)',
                   borderColor: 'rgba(248, 244, 238, 0.3)'
                 }}
@@ -375,7 +375,7 @@ const WeddingInvitation = () => {
     backgroundImage: `url(${FondoFlores})`,
   }}>
 
-  <img 
+  <img
     className="w-full lg:w-1/2 h-auto rounded-xl shadow-lg"
     src={SaveTheDate}
     alt="Fondo"
@@ -384,9 +384,9 @@ const WeddingInvitation = () => {
 
 
       {/* Ceremonia Religiosa */}
-<section 
+<section
   className="py-12 md:py-20 px-4 relative"
-  style={{ 
+  style={{
     backgroundColor: '#F8F4EE',
     backgroundImage: `url(${FondoFlores10})`,
     backgroundSize: 'cover',
@@ -401,14 +401,14 @@ const WeddingInvitation = () => {
 
   {/* TÍTULO */}
   <div className="relative inline-block">
-    <div 
+    <div
       className="absolute inset-0 -inset-x-8 -inset-y-2 rounded-lg blur-sm"
       style={{ backgroundColor: 'rgba(248, 244, 238, 0.9)' }}
     ></div>
 
     <h1
       className="relative text-xl md:text-4xl lg:text-5xl mb-4 px-8"
-      style={{ 
+      style={{
         color: '#6B6C44',
         textShadow: `
           -1px -1px 0 #F8F4EE,
@@ -425,14 +425,14 @@ const WeddingInvitation = () => {
 
   {/* SUBTÍTULO */}
   <div className="relative inline-block mt-4">
-    <div 
+    <div
       className="absolute inset-0 -inset-x-6 -inset-y-2 rounded-lg blur-sm"
       style={{ backgroundColor: 'rgba(248, 244, 238, 0.9)' }}
     ></div>
 
     <h2
       className="relative text-sm md:text-base lg:text-lg px-6 py-1"
-      style={{ 
+      style={{
         color: '#6B6C44',
         textShadow: `
           -1px -1px 0 #F8F4EE,
@@ -510,9 +510,9 @@ const WeddingInvitation = () => {
 </section>
 
 {/* Recepción */}
- <section 
+ <section
   className="py-12 md:py-20 px-4 relative"
-  style={{ 
+  style={{
     backgroundColor: '#6B6C44',
     backgroundImage: `url(${FondoFlores10})`,
     backgroundSize: 'cover',
@@ -529,14 +529,14 @@ const WeddingInvitation = () => {
   {/* TÍTULO */}
   <div className="block">
     <div className="relative inline-block">
-      <div 
+      <div
         className="absolute inset-0 -inset-x-8 -inset-y-2 rounded-lg blur-sm"
         style={{ backgroundColor: 'rgba(107, 108, 68, 0.9)' }}
       ></div>
 
       <h1
         className="relative text-xl md:text-4xl lg:text-5xl mb-4 px-8"
-        style={{ 
+        style={{
           color: '#F8F4EE',
           textShadow: `
             -1px -1px 0 rgba(0,0,0,0.35),
@@ -555,14 +555,14 @@ const WeddingInvitation = () => {
   {/* SUBTÍTULO */}
   <div className="block mt-4">
     <div className="relative inline-block">
-      <div 
+      <div
         className="absolute inset-0 -inset-x-6 -inset-y-2 rounded-lg blur-sm"
         style={{ backgroundColor: 'rgba(107, 108, 68, 0.9)' }}
       ></div>
 
       <h2
         className="relative text-sm md:text-base lg:text-lg px-6 py-1"
-        style={{ 
+        style={{
           color: '#F8F4EE',
           textShadow: `
             -1px -1px 0 rgba(0,0,0,0.35),
@@ -636,7 +636,7 @@ const WeddingInvitation = () => {
   </div>
 </section>
 
-       
+
 
      {/* Padrinos */}
 <section className="py-14 md:py-20 px-4" style={{ backgroundColor: '#F8F4EE' }}>
@@ -698,7 +698,7 @@ const WeddingInvitation = () => {
 </section>
 
 
-  
+
 {/* Fotos */}
 <section className="py-20 px-4 bg-[#DCC6AA] relative">
   <div className="max-w-5xl mx-auto relative">
@@ -791,7 +791,7 @@ const WeddingInvitation = () => {
 
     {/* Tarjetas */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
-      
+
       {/* Hombres */}
       <div
         className="
@@ -901,7 +901,7 @@ const WeddingInvitation = () => {
       className="text-sm md:text-lg mb-6 md:mb-8 leading-relaxed"
       style={{ color: "#DCC6AA" }}
     >
-      Tu presencia es nuestro mejor regalo,  
+      Tu presencia es nuestro mejor regalo,
       pero si deseas obsequiarnos algo:
     </p>
 
@@ -954,20 +954,20 @@ const WeddingInvitation = () => {
 
 
       {/* Quinta Foto */}
-      
+
         <div className="max-w-4xl mx-auto">
-          <div 
+          <div
             className="aspect-video rounded-lg flex items-center justify-center text-white text-2xl shadow-2xl"
             style={{ backgroundColor: '#DCC6AA' }}
           >
-                     <img 
+                     <img
       src={SaveTheDate5}
       alt="Marian y Gil"
       className="w-full h-auto block"
     />
           </div>
         </div>
-      
+
 
       {/* Confirmación */}
 <section
@@ -995,8 +995,7 @@ const WeddingInvitation = () => {
       className="text-sm md:text-lg mb-8 md:mb-10 leading-relaxed"
       style={{ color: "#6B6C44" }}
     >
-      Por favor confirma tu asistencia antes del <strong>30 de marzo </strong>  
-      para asegurar tu lugar y ayudarnos con la organización del evento.
+      Por favor confirma tu asistencia para asegurar tu lugar y ayudarnos con la organización del evento.
     </p>
 
     {/* Tarjetas */}
